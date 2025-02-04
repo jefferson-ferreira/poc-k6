@@ -1,0 +1,22 @@
+name: K6 load test
+on: [push]
+jobs:
+  build:
+    name: K6 load test
+    runs-on: ubuntu-latest
+    steps:
+      - name: step 1 - checkout
+        uses: actions/checkout@v4
+
+      - name: step 2 - run K6 load test
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: scritps/buscarTodosCrocodilosAWS.js
+
+      - run: ls & mkdir report & mv index.html report
+
+      - name: step 3 - upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio de testes de performace
+          path: report
