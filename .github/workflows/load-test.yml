@@ -12,3 +12,11 @@ jobs:
         uses: grafana/k6-action@v0.3.1
         with:
           filename: scritps/buscarTodosCrocodilosAWS.js
+
+      - run: ls & mkdir report & mv index.html report
+
+      - name: step 3 - upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio de testes de performace
+          path: report
